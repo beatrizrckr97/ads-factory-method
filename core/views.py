@@ -1,19 +1,27 @@
 from django.shortcuts import render
+<<<<<<< HEAD
 from django.utils import timezone
 from django.db.models import Sum, F, FloatField
 from .factories import ReportFactory
 from .models import Sale  # certifique-se de que o modelo Sale existe
 import calendar
+=======
+from .factories import ReportFactory
+>>>>>>> upstream/main
 
 def home(request):
     return render(request, 'home.html')
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/main
 def generate_report(request, report_type):
     factory = ReportFactory()
     report = factory.create_report(report_type)
     data = report.generate()
 
+<<<<<<< HEAD
     total_vendas = sum(data['values']) if data['values'] else 0
     meses_registrados = len(data['labels']) if data['labels'] else 0
     media_mensal = total_vendas / meses_registrados if meses_registrados > 0 else 0
@@ -70,3 +78,9 @@ def sales_dashboard_view(request):
     }
 
     return render(request, 'sales_dashboard.html', context)
+=======
+    template_name = f'{report_type}.html'
+
+    return render(request, template_name, {'content': data, 'report_type': report_type})
+
+>>>>>>> upstream/main
